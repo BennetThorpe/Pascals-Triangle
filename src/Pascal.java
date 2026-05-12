@@ -1,23 +1,35 @@
 public class Pascal {
 
+    // big O = O(n^2)
+    // Big O space: O(n)
     public long pascalRowSumIterative(int n) {
         if (n < 0) throw new IllegalArgumentException("Cannot be a negative #!!!");
 
-        // The nth row has n+1 elements: C(n,n)
-        long[] row = new long[n+1];
-        row[0] = 1; // first number of each row is 1
+        long[] prev = {1};
 
-        long sum = 1; // base case sum
+        for (int i = 1; i <= n; i++) {
+            long[] curr = new long[i + 1];
+            curr[0] = 1; // left edge
+            curr[i] = 1; // right edge
 
-        // C(n, k) = C(n, k-1) * (n-k+1) / k
-        for (int k = 1; k <= n; k++) {
-            row[k] = row[k-1] * (n-k+1) / k;
-            sum += row[k]; // running sum
+            for (int k = 1; k < i; k++) {
+                curr[k] = prev[k-1] + prev[k]; // C(n-1,k-1) + C(n-1,k)
+            }
+
+            prev = curr;
+        }
+
+        // sum the final row
+        long sum = 0;
+        for (long val : prev) {
+            sum += val;
         }
 
         return sum;
     }
 
+    // Big O Time: O(2^n)
+    // Big O space: O(n)
     public long pascalRowSumRecursive(int n) {
         return pascalHelper(n, 0);
     }
