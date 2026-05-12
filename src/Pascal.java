@@ -18,15 +18,15 @@ public class Pascal {
         return sum;
     }
 
+    public long pascalRowSumRecursive(int n) {
+        return pascalHelper(n, 0);
+    }
+
     private static long binomialCoefficient(int n, int k) {
         if (k == 0|| k == n) return 1;
 
         // C(n, k) = C(n-1, k-1) + C(n-1, k)
         return binomialCoefficient(n-1, k-1) + binomialCoefficient(n-1, k);
-    }
-
-    public long pascalRowSumRecursive(int n) {
-        return pascalHelper(n, 0);
     }
 
     private static long pascalHelper(int n, int k) {
