@@ -1,4 +1,7 @@
-
+/*
+Name: Bennet Thorpe:
+Date: 5/21/2026
+ */
 public class Main {
     public static void main(String[] args) {
         Pascal pascal = new Pascal();
